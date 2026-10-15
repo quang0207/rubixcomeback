@@ -1,387 +1,109 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090d18">
-<title>Rubix Comeback</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b18">
+<title>QuangRubix - Comeback</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#090d18;--panel:#121a2b;--panel2:#18233a;
-  --blue:#5d8cff;--cyan:#46e6dc;--text:#f4f7ff;
-  --muted:#96a5c0;--border:#273550
-}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;min-height:100vh
-}
-header{
-  padding:20px 5%;display:flex;align-items:center;
-  justify-content:space-between;gap:14px;flex-wrap:wrap;
-  border-bottom:1px solid var(--border);
-  background:#0d1321
-}
-.logo{font-size:24px;font-weight:900;letter-spacing:-1px}
-.logo span{color:var(--cyan)}
-.tag{font-size:12px;color:var(--muted);margin-top:5px}
-nav{display:flex;gap:8px;flex-wrap:wrap}
-button,input{font:inherit}
-nav button,.filter{
-  background:var(--panel);color:var(--text);
-  border:1px solid var(--border);border-radius:10px;
-  padding:10px 14px;cursor:pointer
-}
-nav button.active,nav button:hover{
-  background:var(--blue);border-color:var(--blue)
-}
-main{max-width:1100px;margin:auto;padding:28px 18px 55px}
-.hero{
-  position:relative;overflow:hidden;
-  padding:32px 24px;border:1px solid #30446b;
-  border-radius:22px;
-  background:linear-gradient(130deg,#18294b,#11192d 60%,#12323b);
-  margin-bottom:24px
-}
-.hero:after{
-  content:"";position:absolute;width:180px;height:180px;
-  right:-45px;top:-50px;border-radius:35px;
-  border:22px solid #ffffff0a;transform:rotate(25deg)
-}
-.eyebrow{color:var(--cyan);font-size:12px;font-weight:bold;
-  letter-spacing:2px;margin-bottom:12px}
-h1{font-size:clamp(30px,7vw,48px);line-height:1.1;
-  margin-bottom:12px;position:relative;z-index:1}
-.hero p{color:#c0cde4;line-height:1.7;max-width:560px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);
-  gap:12px;margin-top:24px}
-.stat{padding:15px;background:#ffffff0b;
-  border:1px solid #ffffff12;border-radius:13px}
-.stat strong{display:block;font-size:25px;margin-bottom:5px}
-.stat span{font-size:12px;color:#b6c6df}
-.section-title{font-size:23px;margin:30px 0 8px}
-.subtitle{font-size:14px;color:var(--muted);line-height:1.6}
-.searchbar{display:flex;gap:10px;margin:20px 0}
-.searchbar input{
-  min-width:0;flex:1;padding:14px 15px;
-  background:var(--panel);color:var(--text);
-  border:1px solid var(--border);border-radius:12px;
-  outline:none
-}
-.searchbar input:focus{border-color:var(--blue)}
-.categories{display:grid;grid-template-columns:repeat(3,1fr);
-  gap:12px;margin:18px 0 26px}
-.category{
-  text-align:left;padding:18px 14px;
-  color:var(--text);background:var(--panel);
-  border:1px solid var(--border);border-radius:15px;
-  cursor:pointer;transition:.2s
-}
-.category:hover,.category.selected{
-  border-color:var(--cyan);transform:translateY(-2px)
-}
-.category .emoji{font-size:26px;display:block;margin-bottom:12px}
-.category strong{font-size:17px;display:block;margin-bottom:6px}
-.category small{color:var(--muted);line-height:1.5}
-.toolbar{display:flex;align-items:center;justify-content:space-between;
-  gap:10px;flex-wrap:wrap;margin:20px 0}
-.toolbar h2{font-size:22px}
-#count{color:var(--muted);font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:13px}
-.case{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:15px;padding:17px;min-width:0
-}
-.case-top{display:flex;align-items:center;
-  justify-content:space-between;gap:8px;margin-bottom:14px}
-.case h3{font-size:16px}
-.pill{font-size:11px;padding:5px 8px;border-radius:20px;
-  background:#263b5c;color:#a9c8ff;white-space:nowrap}
-.formula{
-  background:#0b111f;border:1px solid #202d44;
-  border-radius:10px;padding:13px;
-  font-size:14px;line-height:1.9;overflow-wrap:anywhere;
-  color:#e3ebff;min-height:52px
-}
-.case-footer{display:flex;align-items:center;
-  justify-content:space-between;gap:8px;margin-top:13px}
-.note{font-size:11px;color:var(--muted);line-height:1.5}
-.copy{
-  padding:9px 12px;border:0;border-radius:9px;
-  background:var(--blue);color:white;cursor:pointer;
-  font-size:12px;font-weight:bold;white-space:nowrap
-}
-.copy:hover{filter:brightness(1.15)}
-.empty{grid-column:1/-1;padding:28px;text-align:center;
-  color:var(--muted);background:var(--panel);border-radius:14px}
-footer{text-align:center;color:var(--muted);
-  border-top:1px solid var(--border);padding:24px 12px;
-  font-size:12px;line-height:1.8}
-@media(max-width:600px){
-  header{padding:16px}
-  .logo{font-size:22px}
-  nav{width:100%}
-  nav button{flex:1;padding:10px 7px;font-size:12px}
-  main{padding:20px 13px 40px}
-  .hero{padding:25px 18px}
-  .stats{gap:7px}
-  .stat{padding:12px 9px}
-  .stat strong{font-size:21px}
-  .stat span{font-size:10px}
-  .categories{gap:7px}
-  .category{padding:12px 9px}
-  .category .emoji{font-size:22px}
-  .category strong{font-size:14px}
-  .category small{font-size:10px}
-  .grid{grid-template-columns:1fr}
-}
+*{box-sizing:border-box}
+body{margin:0;background:#080b18;color:#f4f7ff;font-family:Arial,sans-serif}
+header{text-align:center;padding:35px 15px 20px}
+h1{font-size:35px;color:#ffd84d;margin:12px 0}
+header p{color:#aeb8d0;font-size:17px;line-height:1.6}
+main{max-width:850px;margin:auto;padding:15px}
+.card{background:#151e36;border:1px solid #354365;border-radius:25px;padding:25px 20px;margin:20px 0;text-align:center}
+.card h2{font-size:29px;margin:12px}
+.card p{color:#b9c4dc;font-size:17px}
+.btn{display:block;border:0;border-radius:13px;padding:17px;margin-top:22px;background:#ffda55;color:#101323;font-size:17px;font-weight:bold;text-decoration:none;width:100%;cursor:pointer}
+.pll .btn{background:#72a9ff}
+.f2l .btn{background:#53e1b5}
+section{display:none}
+section.active{display:block}
+.back{background:#283552;color:white}
+input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #526080;background:#0c1326;color:white;margin:8px 0;font-size:16px}
+.case{background:#151e36;padding:16px;border-radius:14px;margin:12px 0;text-align:left;overflow-wrap:anywhere}
+.case h3{margin-top:0;color:#ffda55}
+footer{text-align:center;color:#8895b2;padding:35px 10px}
 </style>
 </head>
-
 <body>
 <header>
-  <div>
-    <div class="logo">RUBIX<span>COMEBACK</span></div>
-    <div class="tag">LEARN • PRACTICE • SOLVE</div>
-  </div>
-  <nav>
-    <button class="active" data-mode="home">Trang chủ</button>
-    <button data-mode="OLL">OLL</button>
-    <button data-mode="PLL">PLL</button>
-    <button data-mode="F2L">F2L</button>
-  </nav>
+<h1>⚡ QuangRubix</h1>
+<p>COMEBACK MODE<br>OLL • PLL • F2L • SPEEDCUBING</p>
 </header>
-
 <main>
-  <section class="hero">
-    <div class="eyebrow">YOUR CUBING JOURNEY</div>
-    <h1>Chinh phục<br>Rubik 3×3.</h1>
-    <p>Học công thức, luyện F2L và khám phá OLL, PLL.
-       Từng bước cải thiện tốc độ giải Rubik của bạn.</p>
-    <div class="stats">
-      <div class="stat"><strong>57</strong><span>OLL cases</span></div>
-      <div class="stat"><strong>21</strong><span>PLL cases</span></div>
-      <div class="stat"><strong>F2L</strong><span>Ghép góc & cạnh</span></div>
-    </div>
-  </section>
+<div id="home">
+<div class="card">
+<h2>🟡 OLL</h2>
+<p>57 trường hợp định hướng tầng cuối</p>
+<button class="btn" onclick="openPage('oll')">XEM CÔNG THỨC OLL ↗</button>
+</div>
+<div class="card pll">
+<h2 style="color:#72a9ff">🔵 PLL</h2>
+<p>21 trường hợp hoán vị tầng cuối</p>
+<button class="btn" onclick="openPage('pll')">XEM CÔNG THỨC PLL ↗</button>
+</div>
+<div class="card f2l">
+<h2 style="color:#53e1b5">🟢 F2L</h2>
+<p>Học ghép góc và cạnh hai tầng đầu</p>
+<button class="btn" onclick="openPage('f2l')">HỌC F2L ↗</button>
+</div>
+</div>
 
-  <h2 class="section-title">Chọn phương pháp</h2>
-  <p class="subtitle">Chọn mục bạn muốn học để xem danh sách công thức.</p>
+<section id="oll">
+<h2>🟡 OLL</h2>
+<p>Danh sách 57 trường hợp OLL. Công thức cần đối chiếu với hình mẫu trước khi luyện.</p>
+<input id="searcholl" placeholder="Tìm OLL..." oninput="filterCases('oll')">
+<div id="ollList"></div>
+<button class="btn back" onclick="home()">← Trang chủ</button>
+</section>
 
-  <div class="categories">
-    <button class="category" data-mode="OLL">
-      <span class="emoji">🟨</span>
-      <strong>OLL</strong>
-      <small>Định hướng mặt vàng · 57 trường hợp</small>
-    </button>
-    <button class="category" data-mode="PLL">
-      <span class="emoji">🟦</span>
-      <strong>PLL</strong>
-      <small>Hoán vị tầng cuối · 21 trường hợp</small>
-    </button>
-    <button class="category" data-mode="F2L">
-      <span class="emoji">🧩</span>
-      <strong>F2L</strong>
-      <small>Ghép góc và cạnh tầng đầu tiên</small>
-    </button>
-  </div>
+<section id="pll">
+<h2>🔵 PLL</h2>
+<p>Danh sách 21 trường hợp PLL. Các công thức bên dưới là ví dụ học tập.</p>
+<input id="searchpll" placeholder="Tìm PLL..." oninput="filterCases('pll')">
+<div id="pllList"></div>
+<button class="btn back" onclick="home()">← Trang chủ</button>
+</section>
 
-  <h2 class="section-title">Thư viện công thức</h2>
-  <p class="subtitle">Tìm theo tên case hoặc công thức.</p>
-
-  <div class="searchbar">
-    <input id="search" type="search"
-      placeholder="🔎 Tìm OLL 21, T-perm, F2L..."
-      autocomplete="off">
-  </div>
-
-  <div class="toolbar">
-    <h2 id="listTitle">Tất cả công thức</h2>
-    <span id="count"></span>
-  </div>
-  <div class="grid" id="cases"></div>
+<section id="f2l">
+<h2>🟢 F2L cơ bản</h2>
+<p>F2L ghép một góc tầng 1 với cạnh cùng màu để hoàn thành một cặp.</p>
+<div class="case"><h3>Bước 1: Tìm cặp</h3><p>Tìm một góc tầng dưới và cạnh có chung hai màu bên.</p></div>
+<div class="case"><h3>Bước 2: Đưa cặp lên tầng trên</h3><p>Dùng U, R, L và các nước xoay ngược để tách cặp nếu cần.</p></div>
+<div class="case"><h3>Bước 3: Ghép cặp</h3><p>Đưa góc và cạnh về đúng hướng, ghép thành cặp ở tầng trên.</p></div>
+<div class="case"><h3>Bước 4: Chèn cặp vào khe</h3><p>Xoay mặt trước hoặc mặt phải/trái để chèn cặp vào khe đúng màu.</p></div>
+<button class="btn back" onclick="home()">← Trang chủ</button>
+</section>
 </main>
-
-<footer>
-  <strong>RUBIXCOMEBACK</strong><br>
-  Website học Rubik 3×3 · OLL · PLL · F2L<br>
-  Luyện tập mỗi ngày để cải thiện thành tích của bạn.
-</footer>
+<footer>QUANGRUBIX · KEEP CUBING ⚡</footer>
 
 <script>
-const ollNames = [
-"Dot","Dot","Dot","Dot","Dot","Dot","Dot","Dot","Dot","Dot",
-"Line","Line","Line","Line","Line","Line","Line","Line","Line","Line",
-"L-shape","L-shape","L-shape","L-shape","L-shape","L-shape","L-shape","L-shape","L-shape","L-shape",
-"Shapes","Shapes","Shapes","Shapes","Shapes","Shapes","Shapes","Shapes","Shapes","Shapes",
-"Fish","Fish","Fish","Fish","Fish","Fish","Fish","Fish","Fish","Fish",
-"Other","Other","Other","Other","Other","Other","Other"
-];
-
-const oll = Array.from({length:57},(_,i)=>({
-  mode:"OLL", name:"OLL "+String(i+1).padStart(2,"0"),
-  group:ollNames[i], formula:""
-}));
-
-// Các công thức mẫu bên dưới dùng để minh họa.
-// Các case còn lại cần được bổ sung công thức đã kiểm chứng.
-oll[20].formula="R U2 R' U' R U' R'";
-oll[26].formula="R U R' U R U2 R'";
-oll[39].formula="R U R' U' R' F R F'";
-oll[44].formula="F R U R' U' F'";
-
-const pll = Array.from({length:21},(_,i)=>({
-  mode:"PLL", name:"PLL "+String(i+1).padStart(2,"0"),
-  group:"Permutation", formula:""
-}));
-
-pll[0].name="Aa-perm";
-pll[1].name="Ab-perm";
-pll[2].name="E-perm";
-pll[3].name="F-perm";
-pll[4].name="Ga-perm";
-pll[5].name="Gb-perm";
-pll[6].name="Gc-perm";
-pll[7].name="Gd-perm";
-pll[8].name="H-perm";
-pll[9].name="Ja-perm";
-pll[10].name="Jb-perm";
-pll[11].name="Na-perm";
-pll[12].name="Nb-perm";
-pll[13].name="Ra-perm";
-pll[14].name="Rb-perm";
-pll[15].name="T-perm";
-pll[16].name="Ua-perm";
-pll[17].name="Ub-perm";
-pll[18].name="V-perm";
-pll[19].name="Y-perm";
-pll[20].name="Z-perm";
-
-pll[15].formula="R U R' U' R' F R2 U' R' U' R U R' F'";
-pll[16].formula="R U' R U R U R U' R' U' R2";
-pll[17].formula="R2 U R U R' U' R' U' R' U R'";
-
-const f2l = [
- {name:"F2L · Cơ bản 1",group:"Cơ bản",
-  formula:"Ghép cặp góc và cạnh ở tầng đầu tiên."},
- {name:"F2L · Cơ bản 2",group:"Cơ bản",
-  formula:"Đưa góc và cạnh lên tầng trên trước khi ghép."},
- {name:"F2L · Cơ bản 3",group:"Cơ bản",
-  formula:"Ghép cặp góc-cạnh rồi đưa vào khe đúng."},
- {name:"F2L · Cơ bản 4",group:"Cơ bản",
-  formula:"Quan sát màu cạnh và màu góc trước khi xoay."}
-].map(x=>({...x,mode:"F2L",formula:""}));
-
-let mode="home";
-
-function allCases(){
-  return [...oll,...pll,...f2l];
+function openPage(id){
+document.getElementById('home').style.display='none';
+document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
 }
-
-function render(){
-  const query=document.getElementById("search").value.trim().toLowerCase();
-  let items=allCases();
-  if(mode!=="home") items=items.filter(x=>x.mode===mode);
-  if(query) items=items.filter(x=>
-    (x.name+" "+x.group+" "+x.formula).toLowerCase().includes(query)
-  );
-
-  document.getElementById("listTitle").textContent=
-    mode==="home"?"Tất cả công thức":mode;
-  document.getElementById("count").textContent=
-    items.length+" mục";
-
-  const container=document.getElementById("cases");
-  container.innerHTML="";
-
-  if(!items.length){
-    container.innerHTML='<div class="empty">Không tìm thấy công thức phù hợp.</div>';
-    return;
-  }
-
-  items.forEach(item=>{
-    const card=document.createElement("article");
-    card.className="case";
-
-    const top=document.createElement("div");
-    top.className="case-top";
-    const title=document.createElement("h3");
-    title.textContent=item.name;
-    const pill=document.createElement("span");
-    pill.className="pill";
-    pill.textContent=item.mode;
-    top.append(title,pill);
-
-    const formula=document.createElement("div");
-    formula.className="formula";
-    formula.textContent=item.formula||(
-      item.mode==="F2L"
-      ?"Nội dung hướng dẫn đang được cập nhật."
-      :"Công thức đang được cập nhật."
-    );
-
-    const footer=document.createElement("div");
-    footer.className="case-footer";
-    const note=document.createElement("span");
-    note.className="note";
-    note.textContent=item.formula
-      ?"Kiểm tra hướng nhìn trước khi xoay."
-      :"Chưa có công thức trong phiên bản này.";
-
-    const copy=document.createElement("button");
-    copy.className="copy";
-    copy.textContent="📋 Sao chép";
-    copy.disabled=!item.formula;
-    if(!item.formula){
-      copy.style.opacity=".45";
-      copy.style.cursor="not-allowed";
-    }else{
-      copy.addEventListener("click",async()=>{
-        try{
-          await navigator.clipboard.writeText(item.formula);
-          copy.textContent="✓ Đã sao chép";
-          setTimeout(()=>copy.textContent="📋 Sao chép",1200);
-        }catch(e){
-          const area=document.createElement("textarea");
-          area.value=item.formula;
-          document.body.appendChild(area);
-          area.select();
-          document.execCommand("copy");
-          area.remove();
-          copy.textContent="✓ Đã sao chép";
-          setTimeout(()=>copy.textContent="📋 Sao chép",1200);
-        }
-      });
-    }
-
-    footer.append(note,copy);
-    card.append(top,formula,footer);
-    container.appendChild(card);
-  });
+function home(){
+document.getElementById('home').style.display='block';
+document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+window.scrollTo(0,0);
 }
-
-function setMode(next){
-  mode=next;
-  document.querySelectorAll("nav button").forEach(btn=>{
-    btn.classList.toggle("active",btn.dataset.mode===mode);
-  });
-  document.querySelectorAll(".category").forEach(btn=>{
-    btn.classList.toggle("selected",btn.dataset.mode===mode);
-  });
-  render();
-  document.querySelector(".toolbar").scrollIntoView({
-    behavior:"smooth",block:"start"
-  });
+const ollNames=Array.from({length:57},(_,i)=>'OLL '+(i+1));
+const pllNames=['Aa','Ab','E','F','Ga','Gb','Gc','Gd','H','Ja','Jb','Na','Nb','Ra','Rb','T','Ua','Ub','V','Y','Z'];
+function addCases(id,names){
+const el=document.getElementById(id+'List');
+el.innerHTML=names.map((n,i)=>`<div class="case" data-name="${n.toLowerCase()}"><h3>${n}</h3><p>${id==='oll'?'Trường hợp định hướng tầng cuối.':'Trường hợp hoán vị tầng cuối.'}</p><p>Hình và công thức chuẩn chưa được thêm cho trường hợp này.</p></div>`).join('');
 }
-
-document.querySelectorAll("[data-mode]").forEach(btn=>{
-  btn.addEventListener("click",()=>setMode(btn.dataset.mode));
-});
-document.getElementById("search").addEventListener("input",render);
-
-render();
+function filterCases(id){
+const q=document.getElementById('search'+id).value.toLowerCase();
+document.querySelectorAll('#'+id+'List .case').forEach(c=>c.style.display=c.dataset.name.includes(q)?'block':'none');
+}
+addCases('oll',ollNames);
+addCases('pll',pllNames);
 </script>
 </body>
 </html>
