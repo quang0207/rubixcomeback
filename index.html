@@ -1,109 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080b18">
-<title>QuangRubix - Comeback</title>
+<title>QuangRubix Comeback</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#080b18;color:#f4f7ff;font-family:Arial,sans-serif}
-header{text-align:center;padding:35px 15px 20px}
-h1{font-size:35px;color:#ffd84d;margin:12px 0}
-header p{color:#aeb8d0;font-size:17px;line-height:1.6}
-main{max-width:850px;margin:auto;padding:15px}
-.card{background:#151e36;border:1px solid #354365;border-radius:25px;padding:25px 20px;margin:20px 0;text-align:center}
-.card h2{font-size:29px;margin:12px}
-.card p{color:#b9c4dc;font-size:17px}
-.btn{display:block;border:0;border-radius:13px;padding:17px;margin-top:22px;background:#ffda55;color:#101323;font-size:17px;font-weight:bold;text-decoration:none;width:100%;cursor:pointer}
-.pll .btn{background:#72a9ff}
-.f2l .btn{background:#53e1b5}
-section{display:none}
-section.active{display:block}
-.back{background:#283552;color:white}
-input,select{width:100%;padding:14px;border-radius:10px;border:1px solid #526080;background:#0c1326;color:white;margin:8px 0;font-size:16px}
-.case{background:#151e36;padding:16px;border-radius:14px;margin:12px 0;text-align:left;overflow-wrap:anywhere}
-.case h3{margin-top:0;color:#ffda55}
-footer{text-align:center;color:#8895b2;padding:35px 10px}
+body{margin:0;background:#080b16;color:white;font-family:Arial,sans-serif;text-align:center;padding:25px 16px}
+h1{font-size:36px;color:#ffd84d}p{color:#b9c3dd;line-height:1.6}
+.card{background:#151d34;border:1px solid #394568;border-radius:20px;padding:24px;margin:18px auto;max-width:420px}
+a{display:block;text-decoration:none;background:#ffd84d;color:#11162a;font-weight:bold;padding:15px;border-radius:12px;margin-top:18px}
+.pll a{background:#6ea8ff}
+footer{color:#8994b2;margin-top:35px}
 </style>
 </head>
 <body>
-<header>
 <h1>⚡ QuangRubix</h1>
-<p>COMEBACK MODE<br>OLL • PLL • F2L • SPEEDCUBING</p>
-</header>
-<main>
-<div id="home">
-<div class="card">
-<h2>🟡 OLL</h2>
-<p>57 trường hợp định hướng tầng cuối</p>
-<button class="btn" onclick="openPage('oll')">XEM CÔNG THỨC OLL ↗</button>
-</div>
-<div class="card pll">
-<h2 style="color:#72a9ff">🔵 PLL</h2>
-<p>21 trường hợp hoán vị tầng cuối</p>
-<button class="btn" onclick="openPage('pll')">XEM CÔNG THỨC PLL ↗</button>
-</div>
-<div class="card f2l">
-<h2 style="color:#53e1b5">🟢 F2L</h2>
-<p>Học ghép góc và cạnh hai tầng đầu</p>
-<button class="btn" onclick="openPage('f2l')">HỌC F2L ↗</button>
-</div>
-</div>
-
-<section id="oll">
-<h2>🟡 OLL</h2>
-<p>Danh sách 57 trường hợp OLL. Công thức cần đối chiếu với hình mẫu trước khi luyện.</p>
-<input id="searcholl" placeholder="Tìm OLL..." oninput="filterCases('oll')">
-<div id="ollList"></div>
-<button class="btn back" onclick="home()">← Trang chủ</button>
-</section>
-
-<section id="pll">
-<h2>🔵 PLL</h2>
-<p>Danh sách 21 trường hợp PLL. Các công thức bên dưới là ví dụ học tập.</p>
-<input id="searchpll" placeholder="Tìm PLL..." oninput="filterCases('pll')">
-<div id="pllList"></div>
-<button class="btn back" onclick="home()">← Trang chủ</button>
-</section>
-
-<section id="f2l">
-<h2>🟢 F2L cơ bản</h2>
-<p>F2L ghép một góc tầng 1 với cạnh cùng màu để hoàn thành một cặp.</p>
-<div class="case"><h3>Bước 1: Tìm cặp</h3><p>Tìm một góc tầng dưới và cạnh có chung hai màu bên.</p></div>
-<div class="case"><h3>Bước 2: Đưa cặp lên tầng trên</h3><p>Dùng U, R, L và các nước xoay ngược để tách cặp nếu cần.</p></div>
-<div class="case"><h3>Bước 3: Ghép cặp</h3><p>Đưa góc và cạnh về đúng hướng, ghép thành cặp ở tầng trên.</p></div>
-<div class="case"><h3>Bước 4: Chèn cặp vào khe</h3><p>Xoay mặt trước hoặc mặt phải/trái để chèn cặp vào khe đúng màu.</p></div>
-<button class="btn back" onclick="home()">← Trang chủ</button>
-</section>
-</main>
+<p>COMEBACK MODE<br>OLL • PLL • SPEEDCUBING</p>
+<div class="card"><h2 style="color:#ffd84d">🟡 OLL</h2><p>57 case định hướng tầng cuối</p><a href="https://www.speedcubedb.com/a/3x3/OLL">XEM CÔNG THỨC OLL ↗</a></div>
+<div class="card pll"><h2 style="color:#6ea8ff">🔵 PLL</h2><p>21 case hoán vị tầng cuối</p><a href="https://www.speedcubedb.com/a/3x3/PLL">XEM CÔNG THỨC PLL ↗</a></div>
 <footer>QUANGRUBIX · KEEP CUBING ⚡</footer>
-
-<script>
-function openPage(id){
-document.getElementById('home').style.display='none';
-document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-window.scrollTo(0,0);
-}
-function home(){
-document.getElementById('home').style.display='block';
-document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-window.scrollTo(0,0);
-}
-const ollNames=Array.from({length:57},(_,i)=>'OLL '+(i+1));
-const pllNames=['Aa','Ab','E','F','Ga','Gb','Gc','Gd','H','Ja','Jb','Na','Nb','Ra','Rb','T','Ua','Ub','V','Y','Z'];
-function addCases(id,names){
-const el=document.getElementById(id+'List');
-el.innerHTML=names.map((n,i)=>`<div class="case" data-name="${n.toLowerCase()}"><h3>${n}</h3><p>${id==='oll'?'Trường hợp định hướng tầng cuối.':'Trường hợp hoán vị tầng cuối.'}</p><p>Hình và công thức chuẩn chưa được thêm cho trường hợp này.</p></div>`).join('');
-}
-function filterCases(id){
-const q=document.getElementById('search'+id).value.toLowerCase();
-document.querySelectorAll('#'+id+'List .case').forEach(c=>c.style.display=c.dataset.name.includes(q)?'block':'none');
-}
-addCases('oll',ollNames);
-addCases('pll',pllNames);
-</script>
 </body>
 </html>
