@@ -1,23 +1,147 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuangRubix Comeback</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#02091b">
+<title>QuangRubix - CFOP</title>
 <style>
-body{margin:0;background:#080b16;color:white;font-family:Arial,sans-serif;text-align:center;padding:25px 16px}
-h1{font-size:36px;color:#ffd84d}p{color:#b9c3dd;line-height:1.6}
-.card{background:#151d34;border:1px solid #394568;border-radius:20px;padding:24px;margin:18px auto;max-width:420px}
-a{display:block;text-decoration:none;background:#ffd84d;color:#11162a;font-weight:bold;padding:15px;border-radius:12px;margin-top:18px}
-.pll a{background:#6ea8ff}
-footer{color:#8994b2;margin-top:35px}
+:root{--bg:#02091b;--panel:#071831;--cyan:#00d9ff;--purple:#9b55ff;--green:#00e5a0;--text:#eef7ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#092754,var(--bg) 55%);color:var(--text);font-family:Arial,sans-serif;padding-bottom:80px}
+header{padding:25px 16px;text-align:center;border-bottom:1px solid #174477}
+h1{margin:0;color:white;font-size:32px;font-style:italic}
+h1 span{color:var(--cyan)}
+header p{color:#8fb8e8;letter-spacing:3px;font-size:12px}
+main{max-width:760px;margin:auto;padding:15px}
+.hero{text-align:center;padding:20px 0}
+.hero h2{font-size:35px;font-style:italic;margin:0}
+.hero h2 span{color:var(--cyan)}
+.hero p{color:#b5c9e7;line-height:1.5}
+.cards{display:grid;gap:14px}
+.category{display:flex;align-items:center;text-align:left;gap:15px;padding:18px;background:#061630;border:2px solid var(--cyan);border-radius:18px;color:white;cursor:pointer}
+.category.pll{border-color:var(--purple)}
+.category.f2l{border-color:var(--green)}
+.cube{font-size:48px}
+.category h3{font-size:28px;margin:0 0 8px;color:var(--cyan)}
+.pll h3{color:#c49aff}.f2l h3{color:var(--green)}
+.category p{margin:0;color:#b5c9e7;font-size:13px;line-height:1.5}
+.arrow{margin-left:auto;font-size:34px}
+.search{width:100%;padding:15px;margin:20px 0 12px;border:2px solid #167fe9;border-radius:30px;background:#061329;color:white;font-size:16px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.filters button,.back{padding:11px 14px;border-radius:25px;border:1px solid #2464a8;background:transparent;color:#c3d9f6}
+.filters button.active{background:var(--cyan);color:#00152b}
+.stats{color:#9db8de;font-size:13px;margin:12px 0}
+.case{padding:15px;margin:11px 0;border:1px solid #214a77;border-radius:14px;background:linear-gradient(120deg,#081b38,#061127)}
+.case h3{margin:0 0 7px;color:var(--cyan)}
+.case p{color:#a9c1e4;font-size:13px;line-height:1.5}
+.alg{color:#fff;overflow-wrap:anywhere;font-size:13px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.actions a,.actions button{display:inline-block;padding:10px 12px;border:1px solid #168de8;border-radius:9px;background:#092849;color:#d7f5ff;text-decoration:none;font-size:13px}
+.actions .done{border-color:var(--green)}
+.hidden{display:none}
+#library{display:none}
+#library.active{display:block}
+#home.hidden{display:none}
+.back{margin:12px 0;cursor:pointer}
+footer{text-align:center;color:#5878a7;padding:25px;font-size:12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#030c20f5;border-top:1px solid #174477;display:flex;justify-content:space-around;padding:10px}
+nav button{background:none;border:0;color:#a5bfdf;font-size:12px}
+nav b{display:block;font-size:21px;margin-bottom:3px}
 </style>
 </head>
 <body>
-<h1>⚡ QuangRubix</h1>
-<p>COMEBACK MODE<br>OLL • PLL • SPEEDCUBING</p>
-<div class="card"><h2 style="color:#ffd84d">🟡 OLL</h2><p>57 case định hướng tầng cuối</p><a href="https://www.speedcubedb.com/a/3x3/OLL">XEM CÔNG THỨC OLL ↗</a></div>
-<div class="card pll"><h2 style="color:#6ea8ff">🔵 PLL</h2><p>21 case hoán vị tầng cuối</p><a href="https://www.speedcubedb.com/a/3x3/PLL">XEM CÔNG THỨC PLL ↗</a></div>
+<header>
+<h1>⚡ QUANG <span>RUBIX</span></h1>
+<p>OLL • PLL • F2L • SPEEDCUBING</p>
+</header>
+<main>
+<div id="home">
+<div class="hero">
+<h2>LÀM CHỦ<br><span>OLL &amp; PLL</span></h2>
+<p>Tra cứu công thức nhanh · Luyện tập mỗi ngày</p>
+</div>
+<div class="cards">
+<button class="category" onclick="openSet('OLL')">
+<span class="cube">🟡</span><span><h3>OLL</h3><p>57 CASES<br>Định hướng tầng cuối</p></span><span class="arrow">›</span>
+</button>
+<button class="category pll" onclick="openSet('PLL')">
+<span class="cube">🟣</span><span><h3>PLL</h3><p>21 CASES<br>Hoán vị tầng cuối</p></span><span class="arrow">›</span>
+</button>
+<button class="category f2l" onclick="openSet('F2L')">
+<span class="cube">🟢</span><span><h3>F2L</h3><p>41 CASES<br>Ghép góc và cạnh tầng đầu</p></span><span class="arrow">›</span>
+</button>
+</div>
+<input id="search" class="search" placeholder="⌕ Tìm case, ví dụ OLL 21, T perm..." oninput="render()">
+<div class="filters">
+<button class="active" onclick="setFilter('all',this)">Tất cả</button>
+<button onclick="setFilter('done',this)">✓ Đã học</button>
+<button onclick="setFilter('new',this)">○ Chưa thuộc</button>
+</div>
+<div id="stats" class="stats"></div>
+<div id="results"></div>
+</div>
+
+<div id="library">
+<button class="back" onclick="goHome()">← Trang chủ</button>
+<h2 id="listTitle"></h2>
+<p style="color:#a9c1e4">Chọn case để xem công thức và hình minh họa chuẩn.</p>
+<div id="list"></div>
+</div>
+</main>
 <footer>QUANGRUBIX · KEEP CUBING ⚡</footer>
+<nav>
+<button onclick="goHome()"><b>⌂</b>Trang chủ</button>
+<button onclick="openSet('F2L')"><b>◇</b>F2L</button>
+<button onclick="openSet('OLL')"><b>◇</b>OLL</button>
+<button onclick="openSet('PLL')"><b>◇</b>PLL</button>
+</nav>
+<script>
+const pll=['Aa','Ab','E','F','Ga','Gb','Gc','Gd','H','Ja','Jb','Na','Nb','Ra','Rb','T','Ua','Ub','V','Y','Z'];
+const cases=[
+...Array.from({length:41},(_,i)=>({set:'F2L',name:'F2L '+(i+1),url:'https://cubecoach.app/learn/drill/f2l-'+(i+1)})),
+...Array.from({length:57},(_,i)=>({set:'OLL',name:'OLL '+(i+1),url:'https://cubecoach.app/learn/drill/oll-'+(i+1)})),
+...pll.map(n=>({set:'PLL',name:n+' perm',url:'https://cubecoach.app/learn/drill/pll-'+n.toLowerCase()}))
+];
+let learned=JSON.parse(localStorage.getItem('quangrubix-learned')||'[]');
+let mode='all',selected='ALL';
+function setFilter(m,b){mode=m;document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
+function card(c){
+let done=learned.includes(c.name);
+return `<article class="case"><h3>${c.set} · ${c.name}</h3>
+<p>${done?'✓ Đã đánh dấu đã học':'○ Chưa thuộc'} · Mở nguồn tham khảo để xem công thức và hình của case.</p>
+<div class="actions"><a href="${c.url}" target="_blank" rel="noopener">Xem công thức ↗</a>
+<button class="done" onclick="toggleDone('${c.name.replace(/'/g,"")}')">${done?'Bỏ đánh dấu':'✓ Đã học'}</button></div></article>`;
+}
+function render(){
+let q=document.getElementById('search').value.toLowerCase();
+let filtered=cases.filter(c=>(selected==='ALL'||c.set===selected)&&
+(c.name.toLowerCase().includes(q)||c.set.toLowerCase().includes(q))&&
+(mode==='all'||(mode==='done'&&learned.includes(c.name))||(mode==='new'&&!learned.includes(c.name))));
+document.getElementById('stats').textContent=`Hiển thị ${filtered.length} case · Đã học ${learned.length}/119`;
+document.getElementById('results').innerHTML=filtered.slice(0,25).map(card).join('')+
+(filtered.length>25?'<p class="stats">Có thêm case. Hãy nhập số hoặc tên để tìm nhanh hơn.</p>':'');
+}
+function toggleDone(n){
+learned=learned.includes(n)?learned.filter(x=>x!==n):[...learned,n];
+localStorage.setItem('quangrubix-learned',JSON.stringify(learned));render();
+if(selected!=='ALL')openSet(selected);
+}
+function openSet(set){
+selected=set;
+document.getElementById('home').classList.add('hidden');
+document.getElementById('library').classList.add('active');
+document.getElementById('listTitle').textContent=set+' · '+cases.filter(c=>c.set===set).length+' CASES';
+document.getElementById('list').innerHTML=cases.filter(c=>c.set===set).map(card).join('');
+window.scrollTo(0,0);
+}
+function goHome(){
+selected='ALL';document.getElementById('home').classList.remove('hidden');
+document.getElementById('library').classList.remove('active');render();window.scrollTo(0,0);
+}
+render();
+</script>
 </body>
-</html>
+  </html>
+  
